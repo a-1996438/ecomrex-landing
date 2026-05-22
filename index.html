@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>EcomRex — La fórmula que escala marcas de e-commerce a 7/8 cifras</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAACxklEQVR4nM2Wy2sUQRDGq7p7ZjbZ3ewjDwVBRQ0o5BwRBPVf8G7EkwcvnvQiKiIi3kQM0YMHc5AcFBEfICIa4kGNB0HFQ4yGBPLYx8xkZlfXTHV5WDfRZJLZ3USwTsUw8/2qvq7pbmRm+JchNkSFAZjDS8X/vYOAiJkHhx7vPdg3cOsuAJDWGwlQUiLixOT0m+HR8W9TALDMkiYB1TIfPR3pPXDk2s2hTCop4y2WZa58sxkAMwcBac0zs4W3w6Nj45MCkUjrsOVUTQAQ0TINADAMJdvilmXWhHG9AGZGRMf1Pn4e39zVDgBEeu05bMwirTUAvHr9fv+ho2cv3VBKQtSUN9ABMwdEACiEwJhlGHV92wAAES3TXITV+YfWBdDMAnFicvrK1cHd3dt2bN+CiMwMdSCi14ABFhYCIpqeKfT33xm6/4y0BkSA0KlZHtEdIEB1KE3TSLSn06lEtGqdAGZABM8v33v4vC0R7+rMMjORrqPupVjLIiLSWs/mCsdPXj59/nqpVJZSNLr7rtWBUhIADKWymVQmnURsqPQoQED04dMXAIhZJrMmoibUwwFBQIAwP+8f7jtVqSzc7j9nmkboRvZ3MISNbQhg0RnDMACwOWdWBTDzgycvHbe0r7fHUKpS+bkedfhziqoeEOkzFweOnbgw9nUqZpnrP7FDxjSdTnZk04ZSq6o34lkIgEhXj/Lor5vbi6QQUgpDSSmFlEItJUpKIaWsPZFKSimF+p1IIULUQqbI9Uq24+Xyju14juvlCrbj+kKIXL7ouL7tzOfyTuD6RdvNFx3y/ILtJhOt5Hvl8o+VassvXsz8YuSdX/q+qTNjOx5p3ZFN5YuuECKbTs7lbcs0k8nWuZydiLe0xKxc3k6lEoZSs3PF7l1be/bsrB6rqwI2PEIsItIAjIjMUEsYABEhPEHE2n1g5TL893fTyPgFMDpcXg3z9yQAAAAASUVORK5CYII=">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #FFFFFF; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
@@ -42,16 +43,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   const loading = document.getElementById('__bundler_loading');
   function setStatus(msg) { if (loading) loading.textContent = msg; }
 
-  // Error sink persists across replaceWith since it's on window, not the DOM.
-  window.addEventListener('error', function(e) {
-    var p = document.body || document.documentElement;
-    var d = document.getElementById('__bundler_err') || p.appendChild(document.createElement('div'));
-    d.id = '__bundler_err';
-    d.style.cssText = 'position:fixed;bottom:12px;left:12px;right:12px;font:12px/1.4 ui-monospace,monospace;background:#2a1215;color:#ff8a80;padding:10px 14px;border-radius:8px;border:1px solid #5c2b2e;z-index:99999;white-space:pre-wrap;max-height:40vh;overflow:auto';
-    d.textContent = (d.textContent ? d.textContent + String.fromCharCode(10) : '') +
-      '[bundle] ' + (e.message || e.type) +
-      (e.filename ? ' (' + e.filename.slice(0, 60) + ':' + e.lineno + ')' : '');
-  }, true);
+  // Error handler removed to prevent [bundle] error display in production
 
   try {
     const manifestEl = document.querySelector('script[type="__bundler/manifest"]');
